@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador: Sistemas Distribuídos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="sidebar">
+        <h1>Painel de Controle</h1>
+        
+        <div class="control-group">
+            <div class="group-title">Conceitos Básicos</div>
+            <label class="toggle-row">
+                <span class="toggle-text">Compartilhamento</span>
+                <input type="checkbox" id="btn-comp">
+                <div class="toggle-switch"></div>
+            </label>
+            <label class="toggle-row">
+                <span class="toggle-text">Abertura / Extensibilidade</span>
+                <input type="checkbox" id="btn-aber">
+                <div class="toggle-switch"></div>
+            </label>
+        </div>
+
+        <div class="control-group">
+            <div class="group-title">Transparência</div>
+            <label class="toggle-row">
+                <span class="toggle-text">Localização</span>
+                <input type="checkbox" id="btn-loc">
+                <div class="toggle-switch"></div>
+            </label>
+            <label class="toggle-row">
+                <span class="toggle-text">Migração</span>
+                <input type="checkbox" id="btn-mig">
+                <div class="toggle-switch"></div>
+            </label>
+            <label class="toggle-row">
+                <span class="toggle-text">Relocação</span>
+                <input type="checkbox" id="btn-reloc">
+                <div class="toggle-switch"></div>
+            </label>
+            <label class="toggle-row">
+                <span class="toggle-text">Concorrência</span>
+                <input type="checkbox" id="btn-conc">
+                <div class="toggle-switch"></div>
+            </label>
+            <label class="toggle-row">
+                <span class="toggle-text">Replicação</span>
+                <input type="checkbox" id="btn-rep">
+                <div class="toggle-switch"></div>
+            </label>
+        </div>
+
+        <div class="control-group">
+            <div class="group-title">Escala & Segurança</div>
+            <label class="toggle-row">
+                <span class="toggle-text">Escalabilidade</span>
+                <input type="checkbox" id="btn-esc">
+                <div class="toggle-switch"></div>
+            </label>
+            <label class="toggle-row">
+                <span class="toggle-text">Segurança (TLS)</span>
+                <input type="checkbox" id="btn-tls">
+                <div class="toggle-switch"></div>
+            </label>
+        </div>
+    </div>
+
+    <div class="canvas-area" id="canvas">
+        <svg id="network-lines"></svg>
+
+        <div id="cloud-box" class="transparency-cloud">Rede Interna Oculta do Cliente</div>
+
+        <div class="node client" id="c1"><div class="icon"></div><div class="label">CLIENTE 1</div></div>
+        <div class="node client" id="c2"><div class="icon"></div><div class="label">CLIENTE 2</div></div>
+        <div class="node client" id="c3"><div class="icon"></div><div class="label">CLIENTE 3</div></div>
+
+        <div class="node lb" id="lb"><div class="icon"></div><div class="label">API / BALANCER</div></div>
+
+        <div class="node server" id="s1"><div class="icon"></div><div class="label">SERVER 1</div></div>
+        <div class="node server hidden" id="s2"><div class="icon"></div><div class="label">SERVER 2</div></div>
+        <div class="node server hidden" id="s3"><div class="icon"></div><div class="label">SERVER 3</div></div>
+
+        <div class="node db hidden" id="db_master"><div class="icon"></div><div class="label">DB MASTER</div></div>
+        <div class="node db hidden" id="db_replica"><div class="icon"></div><div class="label">DB REPLICA</div></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

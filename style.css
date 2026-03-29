@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard {
+    display: flex;
+    width: 1100px;
+    height: 700px;
+    background-color: #181825;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border: 1px solid #313244;
+}
+
+.sidebar {
+    width: 320px;
+    background-color: #11111b;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-right: 1px solid #313244;
+    z-index: 10;
+}
+
+.sidebar h1 {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    color: #89b4fa;
+}
+
+.control-group {
+    background-color: #1e1e2e;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #313244;
+}
+
+.group-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #a6adc8;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.toggle-row:last-child { margin-bottom: 0; }
+.toggle-text { font-size: 12px; font-weight: 500; }
+
+.toggle-switch {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background-color: #45475a;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 16px; height: 16px;
+    background-color: #cdd6f4;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+input[type="checkbox"] { display: none; }
+input[type="checkbox"]:checked + .toggle-switch { background-color: #a6e3a1; }
+input[type="checkbox"]:checked + .toggle-switch::after { left: 18px; background-color: #11111b; }
+
+.canvas-area {
+    flex: 1;
+    position: relative;
+    background-color: #1e1e2e;
+    background-image: radial-gradient(#313244 1px, transparent 1px);
+    background-size: 20px 20px;
+    overflow: hidden;
+}
+
+#network-lines {
+    position: absolute;
+    width: 100%; height: 100%;
+    z-index: 1; pointer-events: none;
+}
+.line { stroke: #45475a; stroke-width: 2; fill: none; stroke-dasharray: 4; transition: d 0.5s ease-in-out; }
+.line.active { stroke: #89b4fa; }
+
+.node {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s, top 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+.node.hidden { opacity: 0; pointer-events: none; }
+
+.icon {
+    width: 45px; height: 45px;
+    background-color: #313244;
+    border: 2px solid #585b70;
+    border-radius: 10px;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: 0.2s;
+}
+.icon svg { width: 24px; height: 24px; fill: #cdd6f4; }
+
+.label {
+    margin-top: 8px; font-size: 10px; font-weight: 700;
+    background-color: #181825; padding: 4px 8px; border-radius: 6px;
+    border: 1px solid #45475a; color: #a6adc8; white-space: nowrap;
+}
+
+.node.client .icon { border-color: #cba6f7; }
+.node.lb .icon { border-color: #f38ba8; border-radius: 50%; }
+.node.server .icon { border-color: #89b4fa; }
+.node.db .icon { border-color: #f9e2af; border-radius: 4px; }
+
+.server-locked .icon { 
+    border-color: #f38ba8 !important; 
+    box-shadow: 0 0 15px #f38ba8; 
+    transform: scale(1.1);
+}
+
+.transparency-cloud {
+    position: absolute;
+    border: 2px dashed #a6adc8;
+    background-color: rgba(166, 173, 200, 0.05);
+    border-radius: 20px;
+    z-index: 0; opacity: 0; transition: 0.5s;
+    pointer-events: none;
+    display: flex; justify-content: center; align-items: flex-start;
+    padding-top: 15px; font-size: 14px; font-weight: bold; color: #a6adc8;
+}
+
+.packet {
+    position: absolute;
+    width: 12px; height: 12px;
+    background-color: #cba6f7;
+    border-radius: 50%;
+    z-index: 2;
+    transform: translate(-5px, -5px);
+    box-shadow: 0 0 10px currentColor;
+    pointer-events: none;
+}
+.packet.secure { background-color: #a6e3a1; }
+.packet.sync { background-color: #f9e2af; width: 8px; height: 8px; }
